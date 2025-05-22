@@ -19,12 +19,12 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
     });
 
     if (index == 0) {
-      Navigator.push(
+      Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => HomeScreen()),
       );
     } else if (index == 2) {
-      Navigator.push(
+      Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => ProfilePage()),
       );
