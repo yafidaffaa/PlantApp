@@ -18,7 +18,6 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
       _selectedIndex = index;
     });
 
-    // Navigasi ke halaman yang sesuai
     if (index == 0) {
       Navigator.push(
         context,
