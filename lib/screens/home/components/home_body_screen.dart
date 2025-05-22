@@ -6,7 +6,7 @@ import 'header_with_seachbox.dart';
 import 'recomend_plants.dart';
 import 'title_with_more_bbtn.dart';
 
-class Body extends StatelessWidget {
+class BodyHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:plantapp/screens/details/details_screen.dart';
+import 'package:plantapp/screens/details/detail_screen.dart';
 
 import '../../../constants.dart';
 
@@ -13,35 +13,70 @@ class RecomendsPlants extends StatelessWidget {
       child: Row(
         children: <Widget>[
           RecomendPlantCard(
-            image: "assets/images/image_1.png",
+            image: "assets/images/flower4.jpg",
             title: "Samantha",
-            country: "Russia",
-            price: 440,
+            country: "United States",
+            price: 559,
             press: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => DetailsScreen()),
+                MaterialPageRoute(
+                  builder:
+                      (context) => DetailScreen(
+                        key: UniqueKey(),
+                        title: "Samantha",
+                        country: "United States",
+                        price: 599,
+                        image: AssetImage("assets/images/flower4.jpg"),
+                        size: MediaQuery.of(context).size,
+                      ),
+                ),
               );
             },
           ),
           RecomendPlantCard(
-            image: "assets/images/image_2.png",
+            image: "assets/images/flower2.jpg",
             title: "Angelica",
+            country: "canada",
+            price: 799,
+            press: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder:
+                      (context) => DetailScreen(
+                        key: UniqueKey(),
+                        title: "Angelica",
+                        country: "canada",
+                        price: 799,
+                        image: AssetImage("assets/images/flower2.jpg"),
+                        size: MediaQuery.of(context).size,
+                      ),
+                ),
+              );
+            },
+          ),
+          RecomendPlantCard(
+            image: "assets/images/flower3.jpg",
+            title: "Patrick",
             country: "Russia",
             price: 440,
             press: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => DetailsScreen()),
+                MaterialPageRoute(
+                  builder:
+                      (context) => DetailScreen(
+                        key: UniqueKey(),
+                        title: "patrick",
+                        country: "Russia",
+                        price: 399,
+                        image: AssetImage("assets/images/flower3.jpg"),
+                        size: MediaQuery.of(context).size,
+                      ),
+                ),
               );
             },
-          ),
-          RecomendPlantCard(
-            image: "assets/images/image_3.png",
-            title: "Samantha",
-            country: "Russia",
-            price: 440,
-            press: () {},
           ),
         ],
       ),

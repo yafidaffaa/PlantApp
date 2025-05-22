@@ -1,10 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
+import 'package:plantapp/screens/home/home_screen.dart';
+import 'package:plantapp/screens/profile/profile_screen.dart';
 import '../constants.dart';
 
-class MyBottomNavBar extends StatelessWidget {
-  const MyBottomNavBar({required Key key}) : super(key: key);
+class MyBottomNavBar extends StatefulWidget {
+  const MyBottomNavBar({Key? key}) : super(key: key);
+
+  @override
+  _MyBottomNavBarState createState() => _MyBottomNavBarState();
+}
+
+class _MyBottomNavBarState extends State<MyBottomNavBar> {
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+
+    // Navigasi ke halaman yang sesuai
+    if (index == 0) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => HomeScreen()),
+      );
+    } else if (index == 2) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => ProfilePage()),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,16 +55,25 @@ class MyBottomNavBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           IconButton(
-            icon: SvgPicture.asset("assets/icons/flower.svg"),
-            onPressed: () {},
+            icon: Icon(
+              Icons.spa_rounded,
+              color: _selectedIndex == 0 ? kPrimaryColor : Colors.grey,
+            ),
+            onPressed: () => _onItemTapped(0),
           ),
           IconButton(
-            icon: SvgPicture.asset("assets/icons/heart-icon.svg"),
-            onPressed: () {},
+            icon: Icon(
+              Icons.favorite,
+              color: _selectedIndex == 1 ? kPrimaryColor : Colors.grey,
+            ),
+            onPressed: () => _onItemTapped(1),
           ),
           IconButton(
-            icon: SvgPicture.asset("assets/icons/user-icon.svg"),
-            onPressed: () {},
+            icon: Icon(
+              Icons.person,
+              color: _selectedIndex == 2 ? kPrimaryColor : Colors.grey,
+            ),
+            onPressed: () => _onItemTapped(2),
           ),
         ],
       ),

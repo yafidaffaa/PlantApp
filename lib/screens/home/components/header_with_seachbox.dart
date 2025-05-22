@@ -1,19 +1,48 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../constants.dart';
 
-class HeaderWithSearchBox extends StatelessWidget {
+class HeaderWithSearchBox extends StatefulWidget {
   const HeaderWithSearchBox({required Key key, required this.size})
     : super(key: key);
 
   final Size size;
 
   @override
+  State<HeaderWithSearchBox> createState() => _HeaderWithSearchBoxState();
+}
+
+class _HeaderWithSearchBoxState extends State<HeaderWithSearchBox> {
+  File? _imageFile;
+  String _address = '';
+
+  Future<void> _loadData() async {
+    final prefs = await SharedPreferences.getInstance();
+    final savedImagePath = prefs.getString('saved_image');
+    final savedAddress = prefs.getString('saved_address');
+
+    if (savedImagePath != null && savedAddress != null) {
+      setState(() {
+        _imageFile = File(savedImagePath);
+        _address = savedAddress;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _loadData();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(bottom: kDefaultPadding * 2.5),
-      height: size.height * 0.2,
+      height: widget.size.height * 0.2,
       child: Stack(
         children: <Widget>[
           Container(
@@ -22,7 +51,7 @@ class HeaderWithSearchBox extends StatelessWidget {
               right: kDefaultPadding,
               bottom: 36 + kDefaultPadding,
             ),
-            height: size.height * 0.2 - 27,
+            height: widget.size.height * 0.2 - 27,
             decoration: BoxDecoration(
               color: kPrimaryColor,
               borderRadius: BorderRadius.only(
@@ -32,15 +61,51 @@ class HeaderWithSearchBox extends StatelessWidget {
             ),
             child: Row(
               children: <Widget>[
-                Text(
-                  'Hi Uishopy!',
-                  style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
+                Padding(
+                  padding: EdgeInsets.only(top: 20),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Hi!, Yafi Daffa',
+                        style: Theme.of(
+                          context,
+                        ).textTheme.headlineSmall!.copyWith(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        _address,
+                        style: Theme.of(
+                          context,
+                        ).textTheme.headlineSmall!.copyWith(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 Spacer(),
-                Image.asset("assets/images/logo.png"),
+                ClipOval(
+                  child:
+                      _imageFile != null
+                          ? Image.file(
+                            _imageFile!,
+                            height: 100,
+                            width: 100,
+                            fit: BoxFit.cover,
+                          )
+                          : Image.asset(
+                            "assets/images/logo2.png",
+                            height: 100,
+                            width: 100,
+                            fit: BoxFit.cover,
+                          ),
+                ),
               ],
             ),
           ),
@@ -79,7 +144,7 @@ class HeaderWithSearchBox extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SvgPicture.asset("assets/icons/search.svg"),
+                  Icon(color: kPrimaryColor, size: 30, Icons.search),
                 ],
               ),
             ),

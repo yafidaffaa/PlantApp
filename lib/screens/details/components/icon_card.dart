@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../constants.dart';
 
 class IconCard extends StatelessWidget {
   const IconCard({required Key key, required this.icon}) : super(key: key);
 
-  final String icon;
+  final IconData icon;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +31,7 @@ class IconCard extends StatelessWidget {
           ),
         ],
       ),
-      child: SvgPicture.asset(icon),
+      child: Icon(icon, color: kPrimaryColor, size: 30),
     );
   }
 }

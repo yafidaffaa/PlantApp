@@ -11,14 +11,8 @@ class FeaturedPlants extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: Row(
         children: <Widget>[
-          FeaturePlantCard(
-            image: "assets/images/bottom_img_1.png",
-            press: () {},
-          ),
-          FeaturePlantCard(
-            image: "assets/images/bottom_img_2.png",
-            press: () {},
-          ),
+          FeaturePlantCard(image: "assets/images/flower1.jpg", press: () {}),
+          FeaturePlantCard(image: "assets/images/flower5.jpg", press: () {}),
         ],
       ),
     );

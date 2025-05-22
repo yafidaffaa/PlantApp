@@ -5,9 +5,14 @@ import '../../../constants.dart';
 import 'icon_card.dart';
 
 class ImageAndIcons extends StatelessWidget {
-  const ImageAndIcons({required Key key, required this.size}) : super(key: key);
+  const ImageAndIcons({
+    required Key key,
+    required this.size,
+    required this.image,
+  }) : super(key: key);
 
   final Size size;
+  final ImageProvider image;
 
   @override
   Widget build(BuildContext context) {
@@ -30,17 +35,17 @@ class ImageAndIcons extends StatelessWidget {
                         padding: EdgeInsets.symmetric(
                           horizontal: kDefaultPadding,
                         ),
-                        icon: SvgPicture.asset("assets/icons/back_arrow.svg"),
+                        icon: Icon(Icons.arrow_back),
                         onPressed: () {
                           Navigator.pop(context);
                         },
                       ),
                     ),
                     Spacer(),
-                    IconCard(key: UniqueKey(), icon: "assets/icons/sun.svg"),
-                    IconCard(key: UniqueKey(), icon: "assets/icons/icon_2.svg"),
-                    IconCard(key: UniqueKey(), icon: "assets/icons/icon_3.svg"),
-                    IconCard(key: UniqueKey(), icon: "assets/icons/icon_4.svg"),
+                    IconCard(key: UniqueKey(), icon: Icons.sunny),
+                    IconCard(key: UniqueKey(), icon: Icons.thermostat_outlined),
+                    IconCard(key: UniqueKey(), icon: Icons.water_drop),
+                    IconCard(key: UniqueKey(), icon: Icons.air),
                   ],
                 ),
               ),
@@ -63,7 +68,7 @@ class ImageAndIcons extends StatelessWidget {
                 image: DecorationImage(
                   alignment: Alignment.centerLeft,
                   fit: BoxFit.cover,
-                  image: AssetImage("assets/images/img.png"),
+                  image: image,
                 ),
               ),
             ),
